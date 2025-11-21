@@ -1,0 +1,136 @@
+{
+  "clients": [
+    {
+      "id": "C001",
+      "cliente": "TechFin Solutions",
+      "mrr_usd": 15000,
+      "caso_uso": "Validación de identidad para onboarding digital",
+      "estado_servicio": "En riesgo de churn",
+      "porcentaje_usuarios_afectados": 45,
+      "incidente_pdf": "La cámara biométrica no se habilita durante la validación de rostro.",
+      "impacto_negocio": "Clientes no completan onboarding KYC, riesgo alto de churn."
+    },
+    {
+      "id": "C002",
+      "cliente": "Retail Express",
+      "mrr_usd": 5000,
+      "caso_uso": "Asignación de conversaciones de soporte (chatbot/agentes)",
+      "estado_servicio": "Producción",
+      "porcentaje_usuarios_afectados": 100,
+      "incidente_pdf": "Los chats no se asignan a los agentes activos.",
+      "impacto_negocio": "Atención detenida, backlog de conversaciones, afecta satisfacción del cliente."
+    },
+    {
+      "id": "C003",
+      "cliente": "LegalVerify & Corp",
+      "mrr_usd": 8000,
+      "caso_uso": "Background checks para contratación",
+      "estado_servicio": "Producción",
+      "porcentaje_usuarios_afectados": 20,
+      "incidente_pdf": "El score de un check no se ve afectado aunque las fuentes entregan antecedentes.",
+      "impacto_negocio": "Reportes incompletos para contratación, riesgo de compliance."
+    },
+    {
+      "id": "C004",
+      "cliente": "Logística Rápida",
+      "mrr_usd": 2500,
+      "caso_uso": "Validación de documentos para entregas",
+      "estado_servicio": "En riesgo de churn",
+      "porcentaje_usuarios_afectados": 100,
+      "incidente_pdf": "El proceso de validación permanece en estado pending aunque el documento expiró.",
+      "impacto_negocio": "Entregas detenidas, SLA logístico comprometido."
+    },
+    {
+      "id": "C005",
+      "cliente": "Recursos Humanos S.A.",
+      "mrr_usd": 1200,
+      "caso_uso": "Gestión de flujos de validación interna",
+      "estado_servicio": "Producción",
+      "porcentaje_usuarios_afectados": 10,
+      "incidente_pdf": "No pueden editar el número de reintentos de sus validadores.",
+      "impacto_negocio": "Procesos internos rígidos, mayor fricción operacional."
+    },
+    {
+      "id": "C006",
+      "cliente": "Marketing Cloud",
+      "mrr_usd": 20000,
+      "caso_uso": "Campañas masivas de WhatsApp outbound",
+      "estado_servicio": "Producción (alto consumo)",
+      "porcentaje_usuarios_afectados": 100,
+      "incidente_pdf": "Fallan todos los envíos de una campaña outbound.",
+      "impacto_negocio": "Pérdida de campañas críticas y KPIs comerciales."
+    },
+    {
+      "id": "C007",
+      "cliente": "E-commerce Global",
+      "mrr_usd": 7500,
+      "caso_uso": "Chat de atención al cliente",
+      "estado_servicio": "En riesgo de churn",
+      "porcentaje_usuarios_afectados": 60,
+      "incidente_pdf": "Se duplican las conversaciones de una sola interacción.",
+      "impacto_negocio": "Sobrecarga de agentes y confusión de clientes."
+    },
+    {
+      "id": "C008",
+      "cliente": "HealthSecure",
+      "mrr_usd": 3000,
+      "caso_uso": "Validación de identidad remota (telemedicina)",
+      "estado_servicio": "Integración",
+      "porcentaje_usuarios_afectados": 35,
+      "incidente_pdf": "Demoras al cargar fotos durante la validación de identidad.",
+      "impacto_negocio": "Consultas médicas virtuales retrasadas, riesgo reputacional."
+    },
+    {
+      "id": "C009",
+      "cliente": "Banco del Mañana",
+      "mrr_usd": 35000,
+      "caso_uso": "Verificación de antecedentes para créditos",
+      "estado_servicio": "Producción (crítico)",
+      "porcentaje_usuarios_afectados": 5,
+      "incidente_pdf": "Aparecen procesos y antecedentes legales/penales de una persona incorrecta.",
+      "impacto_negocio": "Riesgo regulatorio y bloqueo de aprobaciones crediticias."
+    },
+    {
+      "id": "C010",
+      "cliente": "Telecom Innova",
+      "mrr_usd": 6500,
+      "caso_uso": "Notificaciones de reglas de negocio (webhooks)",
+      "estado_servicio": "Integración",
+      "porcentaje_usuarios_afectados": 70,
+      "incidente_pdf": "Las notificaciones de reglas (bree) no llegan aunque están configuradas vía webhooks.",
+      "impacto_negocio": "Eventos críticos del negocio no disparan acciones automáticas."
+    }
+  ],
+  "ans_matrix": [
+    {
+      "impacto": "Crítico",
+      "tiempo_primer_respuesta": "15 minutos",
+      "tiempo_asistencia": "30 minutos",
+      "tiempo_objetivo_solucion": "4 horas"
+    },
+    {
+      "impacto": "Alto",
+      "tiempo_primer_respuesta": "30 minutos (horario laboral)",
+      "tiempo_asistencia": "1 hora (horario laboral)",
+      "tiempo_objetivo_solucion": "2 días hábiles"
+    },
+    {
+      "impacto": "Medio",
+      "tiempo_primer_respuesta": "1 hora (horario laboral)",
+      "tiempo_asistencia": "4 horas (horario laboral)",
+      "tiempo_objetivo_solucion": "5 días hábiles"
+    },
+    {
+      "impacto": "Bajo",
+      "tiempo_primer_respuesta": "4 horas (horario laboral)",
+      "tiempo_asistencia": "1 día hábil",
+      "tiempo_objetivo_solucion": "10 días hábiles"
+    }
+  ],
+  "metricas_definiciones": {
+    "tiempo_primer_respuesta": "Tiempo máximo desde que se abre el ticket hasta que un ingeniero confirma recepción y entiende el problema.",
+    "tiempo_asistencia": "Tiempo máximo desde la apertura hasta que el ingeniero comienza diagnóstico o solución.",
+    "tiempo_objetivo_solucion": "Tiempo deseado para resolver el incidente o proponer workaround."
+  }
+}
+

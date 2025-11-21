@@ -1,0 +1,31 @@
+{
+  "name": "support-engineer",
+  "version": "1.0.0",
+  "description": "Prueba técnica L2 - Ticket Triage Copilot",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/server.mjs",
+    "start": "node src/server.mjs",
+    "ingest": "node scripts/ingest_data.mjs",
+    "test": "echo \"No automated tests yet\" && exit 0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "openai": "^6.9.1",
+    "pdf-parse": "^2.4.5",
+    "pdfreader": "^3.0.8",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-scripts": "^5.0.1",
+    "string-similarity": "^4.0.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}

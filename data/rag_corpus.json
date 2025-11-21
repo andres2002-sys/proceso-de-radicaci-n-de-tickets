@@ -1,0 +1,747 @@
+{
+  "generated_at": "2025-11-19T16:38:10.272Z",
+  "total_documents": 60,
+  "ans_matrix": [
+    {
+      "impacto": "Crítico",
+      "tiempo_primer_respuesta": "15 minutos",
+      "tiempo_asistencia": "30 minutos",
+      "tiempo_objetivo_solucion": "4 horas"
+    },
+    {
+      "impacto": "Alto",
+      "tiempo_primer_respuesta": "30 minutos (horario laboral)",
+      "tiempo_asistencia": "1 hora (horario laboral)",
+      "tiempo_objetivo_solucion": "2 días hábiles"
+    },
+    {
+      "impacto": "Medio",
+      "tiempo_primer_respuesta": "1 hora (horario laboral)",
+      "tiempo_asistencia": "4 horas (horario laboral)",
+      "tiempo_objetivo_solucion": "5 días hábiles"
+    },
+    {
+      "impacto": "Bajo",
+      "tiempo_primer_respuesta": "4 horas (horario laboral)",
+      "tiempo_asistencia": "1 día hábil",
+      "tiempo_objetivo_solucion": "10 días hábiles"
+    }
+  ],
+  "metricas_definiciones": {
+    "tiempo_primer_respuesta": "Tiempo máximo desde que se abre el ticket hasta que un ingeniero confirma recepción y entiende el problema.",
+    "tiempo_asistencia": "Tiempo máximo desde la apertura hasta que el ingeniero comienza diagnóstico o solución.",
+    "tiempo_objetivo_solucion": "Tiempo deseado para resolver el incidente o proponer workaround."
+  },
+  "documents": [
+    {
+      "id": "T001",
+      "type": "historical_ticket",
+      "content": "Ticket T001: API de validación no responde - Error 500\nClientes reportan que el endpoint /api/v2/identity/validate retorna error 500. Afecta a todos los usuarios en producción desde las 14:30.\nCategoría: Validación de identidad – Disponibilidad\nSolución histórica: Se reinició el pool de conexiones de la base de datos y se escalaron instancias.",
+      "metadata": {
+        "prioridad": "P1",
+        "urgencia": "Crítica",
+        "sla": "1 hora",
+        "categoria": "Validación de identidad – Disponibilidad",
+        "tiempo_resolucion": "45 minutos"
+      }
+    },
+    {
+      "id": "T002",
+      "type": "historical_ticket",
+      "content": "Ticket T002: Lentitud en dashboard de reportes\nUsuario reporta que el dashboard tarda más de 30 segundos en cargar. Solo afecta a un cliente específico.\nCategoría: Performance – UI\nSolución histórica: Se optimizó la query de base de datos, se añadió índice y se liberaron datos obsoletos.",
+      "metadata": {
+        "prioridad": "P3",
+        "urgencia": "Media",
+        "sla": "24 horas",
+        "categoria": "Performance – UI",
+        "tiempo_resolucion": "6 horas"
+      }
+    },
+    {
+      "id": "T003",
+      "type": "historical_ticket",
+      "content": "Ticket T003: Consulta sobre integración con Webhooks\nCliente pregunta cómo configurar webhooks para recibir notificaciones de validaciones completadas. Necesita documentación.\nCategoría: Customer Engagement – Consulta\nSolución histórica: Se envió la documentación técnica de la API y se agendó demo si es necesario.",
+      "metadata": {
+        "prioridad": "P4",
+        "urgencia": "Baja",
+        "sla": "72 horas",
+        "categoria": "Customer Engagement – Consulta",
+        "tiempo_resolucion": "2 horas"
+      }
+    },
+    {
+      "id": "T004",
+      "type": "historical_ticket",
+      "content": "Ticket T004: Falla en verificación de antecedentes – país específico\nEl módulo de verificación de antecedentes no retorna datos para Perú desde las 09:00. Otros países funcionan correctamente.\nCategoría: Verificación de antecedentes – Integración país\nSolución histórica: Se detectó cambio en API del proveedor local; se aplicó parche y se liberó fix para el país en cuestión.",
+      "metadata": {
+        "prioridad": "P2",
+        "urgencia": "Alta",
+        "sla": "4 horas",
+        "categoria": "Verificación de antecedentes – Integración país",
+        "tiempo_resolucion": "3 horas 30 minutos"
+      }
+    },
+    {
+      "id": "T005",
+      "type": "historical_ticket",
+      "content": "Ticket T005: Error de autenticación en Customer Engagement WhatsApp\nLos mensajes desde WhatsApp vía chatbot no se envían, aparece error 401. Afecta a todos los flujos de soporte.\nCategoría: Customer Engagement – Disponibilidad\nSolución histórica: Se renovaron los tokens de acceso, reiniciado el servicio de mensajería y verificados los logs de integración.",
+      "metadata": {
+        "prioridad": "P1",
+        "urgencia": "Crítica",
+        "sla": "1 hora",
+        "categoria": "Customer Engagement – Disponibilidad",
+        "tiempo_resolucion": "50 minutos"
+      }
+    },
+    {
+      "id": "T006",
+      "type": "historical_ticket",
+      "content": "Ticket T006: Alta latencia en validación de identidad móvil\nLa API /api/v2/identity/mobile tarda más de 8 segundos en devolver respuesta, lo cual impacta la experiencia móvil.\nCategoría: Validación de identidad – Performance\nSolución histórica: Se identificó cuello de botella en microservicio de imágenes, se escaló horizontalmente y respuesta volvió a <2 segundos.",
+      "metadata": {
+        "prioridad": "P2",
+        "urgencia": "Alta",
+        "sla": "4 horas",
+        "categoria": "Validación de identidad – Performance",
+        "tiempo_resolucion": "5 horas"
+      }
+    },
+    {
+      "id": "T007",
+      "type": "historical_ticket",
+      "content": "Ticket T007: Solicitud de cambio en flujo de onboarding KYC\nCliente solicita modificar el flujo de onboarding para que primero se valide foto de identidad antes que datos básicos.\nCategoría: Validación de identidad – Cambio funcional\nSolución histórica: Se diseñó nuevo diagrama de flujo, se entregó requerimiento técnico y se programó para la próxima versión.",
+      "metadata": {
+        "prioridad": "P4",
+        "urgencia": "Baja",
+        "sla": "72 horas",
+        "categoria": "Validación de identidad – Cambio funcional",
+        "tiempo_resolucion": "1 día"
+      }
+    },
+    {
+      "id": "T008",
+      "type": "historical_ticket",
+      "content": "Ticket T008: Fallo en envío de notificaciones masivas vía WhatsApp\nCampaña de notificaciones a 10 000 usuarios quedó detenida a mitad del envío sin errores visibles.\nCategoría: Customer Engagement – Notificaciones\nSolución histórica: Se reinició el servicio de colas, se limpió backlog y se limitó simultaneidad para evitar saturación.",
+      "metadata": {
+        "prioridad": "P2",
+        "urgencia": "Alta",
+        "sla": "4 horas",
+        "categoria": "Customer Engagement – Notificaciones",
+        "tiempo_resolucion": "4 horas 15 minutos"
+      }
+    },
+    {
+      "id": "T009",
+      "type": "historical_ticket",
+      "content": "Ticket T009: Error 403 en verificación de antecedentes – módulo AML\nAl consultar antecedentes AML, la API devuelve 403 para ciertos casos, impidiendo onboarding de nuevos clientes.\nCategoría: Verificación de antecedentes – Seguridad\nSolución histórica: Se identificó revocación de clave de API, se regeneró y restableció el acceso con éxito.",
+      "metadata": {
+        "prioridad": "P1",
+        "urgencia": "Crítica",
+        "sla": "1 hora",
+        "categoria": "Verificación de antecedentes – Seguridad",
+        "tiempo_resolucion": "30 minutos"
+      }
+    },
+    {
+      "id": "T010",
+      "type": "historical_ticket",
+      "content": "Ticket T010: Conversión de chatbot no registra eventos\nEl chatbot de WhatsApp no está registrando conversiones en Google Analytics como se configuró.\nCategoría: Customer Engagement – Integración externa\nSolución histórica: Se corrigió la configuración del tag de Analytics, validamos eventos y conversiones empezaron a registrarse.",
+      "metadata": {
+        "prioridad": "P3",
+        "urgencia": "Media",
+        "sla": "24 horas",
+        "categoria": "Customer Engagement – Integración externa",
+        "tiempo_resolucion": "10 horas"
+      }
+    },
+    {
+      "id": "T011",
+      "type": "historical_ticket",
+      "content": "Ticket T011: API de validación de identidad devuelve estado “pendiente” indefinidamente\nEl endpoint de verificación se queda en estado “pending” por más de 10 minutos para nuevos usuarios.\nCategoría: Validación de identidad – Estados de proceso\nSolución histórica: Se ajustó timeout del servicio de terceros y se implementó mecanismo de fallback a estado “rechazado” tras 2 minutos.",
+      "metadata": {
+        "prioridad": "P2",
+        "urgencia": "Alta",
+        "sla": "4 horas",
+        "categoria": "Validación de identidad – Estados de proceso",
+        "tiempo_resolucion": "2 horas 30 minutos"
+      }
+    },
+    {
+      "id": "T012",
+      "type": "historical_ticket",
+      "content": "Ticket T012: Solicitud de personalización de plantilla de WhatsApp\nCliente solicita personalizar la plantilla de mensajes de WhatsApp con variables dinámicas adicionales.\nCategoría: Customer Engagement – Personalización\nSolución histórica: Se creó nueva plantilla y se actualizó en la plataforma, se notificó al cliente y quedó validada.",
+      "metadata": {
+        "prioridad": "P4",
+        "urgencia": "Baja",
+        "sla": "72 horas",
+        "categoria": "Customer Engagement – Personalización",
+        "tiempo_resolucion": "3 horas"
+      }
+    },
+    {
+      "id": "T013",
+      "type": "historical_ticket",
+      "content": "Ticket T013: Reporte de actividad de antecedentes genera datos incompletos\nEl reporte descargable (.csv) del módulo de antecedentes omite la columna “fecha de última actualización”.\nCategoría: Verificación de antecedentes – Reportes\nSolución histórica: Se identificó error en el generador de CSV, se añadió campo faltante y se liberó versión corregida.",
+      "metadata": {
+        "prioridad": "P3",
+        "urgencia": "Media",
+        "sla": "24 horas",
+        "categoria": "Verificación de antecedentes – Reportes",
+        "tiempo_resolucion": "8 horas"
+      }
+    },
+    {
+      "id": "T014",
+      "type": "historical_ticket",
+      "content": "Ticket T014: Problema de acceso al portal de administración\nEl cliente no puede ingresar al portal de administración de Customer Engagement desde Chrome en modo incognito.\nCategoría: Customer Engagement – Acceso\nSolución histórica: Se detectó bloqueo por cookies de terceros, se ajustó configuración para modo incógnito y se informó cliente.",
+      "metadata": {
+        "prioridad": "P3",
+        "urgencia": "Media",
+        "sla": "24 horas",
+        "categoria": "Customer Engagement – Acceso",
+        "tiempo_resolucion": "5 horas"
+      }
+    },
+    {
+      "id": "T015",
+      "type": "historical_ticket",
+      "content": "Ticket T015: Fallo al procesar imagen de identidad – formato no compatible\nLa API de validación de identidad no acepta imagen en formato HEIC, causando error para usuarios iOS.\nCategoría: Validación de identidad – Formato de archivo\nSolución histórica: Se añadió soporte para HEIC o bien conversión automática a JPG, y se desplegó parche.",
+      "metadata": {
+        "prioridad": "P2",
+        "urgencia": "Alta",
+        "sla": "4 horas",
+        "categoria": "Validación de identidad – Formato de archivo",
+        "tiempo_resolucion": "3 horas 20 minutos"
+      }
+    },
+    {
+      "id": "T016",
+      "type": "historical_ticket",
+      "content": "Ticket T016: Error de factura – módulo de Customer Engagement\nEl cliente no pudo visualizar su factura mensual en la plataforma de Customer Engagement.\nCategoría: Customer Engagement – Facturación\nSolución histórica: Se rectificó el acceso al módulo de facturación, se generó la factura manualmente y se cargó en portal.",
+      "metadata": {
+        "prioridad": "P3",
+        "urgencia": "Media",
+        "sla": "24 horas",
+        "categoria": "Customer Engagement – Facturación",
+        "tiempo_resolucion": "7 horas"
+      }
+    },
+    {
+      "id": "T017",
+      "type": "historical_ticket",
+      "content": "Ticket T017: Solicitud de actualización de nivel de servicio para verificación AML\nEl cliente requiere que el tiempo de respuesta para módulo AML pase de 5 minutos a 2 minutos.\nCategoría: Verificación de antecedentes – SLA\nSolución histórica: Se evaluó factibilidad, se aplicó propuesta técnica y se actualizó contrato con nuevo SLA.",
+      "metadata": {
+        "prioridad": "P4",
+        "urgencia": "Baja",
+        "sla": "72 horas",
+        "categoria": "Verificación de antecedentes – SLA",
+        "tiempo_resolucion": "12 horas"
+      }
+    },
+    {
+      "id": "T018",
+      "type": "historical_ticket",
+      "content": "Ticket T018: La plataforma arroja “502 Bad Gateway” intermitente\nDurante la mañana se presentó “502 Bad Gateway” para el portal de administración de identidad digital.\nCategoría: Validación de identidad – Infraestructura\nSolución histórica: Se identificó un loop en el balanceador de carga, se corrigió la configuración y se restableció servicio.",
+      "metadata": {
+        "prioridad": "P1",
+        "urgencia": "Crítica",
+        "sla": "1 hora",
+        "categoria": "Validación de identidad – Infraestructura",
+        "tiempo_resolucion": "55 minutos"
+      }
+    },
+    {
+      "id": "T019",
+      "type": "historical_ticket",
+      "content": "Ticket T019: Fallo en webhook de estado “validado”\nEl cliente no recibe el webhook cuando la validación de identidad pasa a estado “validado”.\nCategoría: Validación de identidad – Webhooks\nSolución histórica: Se corrigió la configuración del endpoint del cliente y se volvió a probar exitosamente.",
+      "metadata": {
+        "prioridad": "P2",
+        "urgencia": "Alta",
+        "sla": "4 horas",
+        "categoria": "Validación de identidad – Webhooks",
+        "tiempo_resolucion": "3 horas"
+      }
+    },
+    {
+      "id": "T020",
+      "type": "historical_ticket",
+      "content": "Ticket T020: Campaña de WhatsApp muestra doble recibo\nAl enviar campaña de 5 000 mensajes, algunos usuarios recibieron el mensaje dos veces.\nCategoría: Customer Engagement – Mensajería\nSolución histórica: Se detectó duplicidad en la encolación de mensajes, se limpió backlog y se ajustó lógica de control.",
+      "metadata": {
+        "prioridad": "P3",
+        "urgencia": "Media",
+        "sla": "24 horas",
+        "categoria": "Customer Engagement – Mensajería",
+        "tiempo_resolucion": "9 horas"
+      }
+    },
+    {
+      "id": "T021",
+      "type": "historical_ticket",
+      "content": "Ticket T021: Error de relevamiento de datos en antecedentes – país Argentina\nLa verificación de antecedentes para Argentina arroja datos desactualizados desde hace 2 días.\nCategoría: Verificación de antecedentes – Calidad de datos\nSolución histórica: Se coordinó con proveedor local para refrescar dataset y se forzó limpieza de caché.",
+      "metadata": {
+        "prioridad": "P2",
+        "urgencia": "Alta",
+        "sla": "4 horas",
+        "categoria": "Verificación de antecedentes – Calidad de datos",
+        "tiempo_resolucion": "2 horas 40 minutos"
+      }
+    },
+    {
+      "id": "T022",
+      "type": "historical_ticket",
+      "content": "Ticket T022: Solicitud de reporte personalizado – Customer Engagement\nEl cliente requiere un reporte mensual de métricas específico para envíos vía WhatsApp, no incluido en la versión estándar.\nCategoría: Customer Engagement – Reportes personalizados\nSolución histórica: Se desarrolló módulo de reporte personalizado y se entregó en 18 horas.",
+      "metadata": {
+        "prioridad": "P4",
+        "urgencia": "Baja",
+        "sla": "72 horas",
+        "categoria": "Customer Engagement – Reportes personalizados",
+        "tiempo_resolucion": "18 horas"
+      }
+    },
+    {
+      "id": "T023",
+      "type": "historical_ticket",
+      "content": "Ticket T023: Fallo en token de autenticación – verificación de antecedentes\nEl módulo de antecedentes devuelve “Invalid token” para nuevos clientes registrados.\nCategoría: Verificación de antecedentes – Autenticación\nSolución histórica: Se detectó cambio en key de autenticación, se regeneró y se comunicó al cliente.",
+      "metadata": {
+        "prioridad": "P1",
+        "urgencia": "Crítica",
+        "sla": "1 hora",
+        "categoria": "Verificación de antecedentes – Autenticación",
+        "tiempo_resolucion": "25 minutos"
+      }
+    },
+    {
+      "id": "T024",
+      "type": "historical_ticket",
+      "content": "Ticket T024: Discrepancia entre resultados de identidad y antecedentes\nPara ciertos usuarios la identidad es validada pero los antecedentes muestran error → inconsistencias en la plataforma.\nCategoría: Integración – Identidad & Antecedentes\nSolución histórica: Se ajustó lógica de correlación entre módulos y se sincronizó estados correctamente.",
+      "metadata": {
+        "prioridad": "P2",
+        "urgencia": "Alta",
+        "sla": "4 horas",
+        "categoria": "Integración – Identidad & Antecedentes",
+        "tiempo_resolucion": "4 horas 30 minutos"
+      }
+    },
+    {
+      "id": "T025",
+      "type": "historical_ticket",
+      "content": "Ticket T025: Botón “Iniciar verificación” no habilitado en UI móvil\nEn la aplicación móvil iOS el botón para iniciar verificación de identidad no aparece para algunos usuarios.\nCategoría: Validación de identidad – UI móvil\nSolución histórica: Se detectó problema de compatibilidad CSS en iOS 17, se aplicó parche y se actualizó la SDK móvil.",
+      "metadata": {
+        "prioridad": "P3",
+        "urgencia": "Media",
+        "sla": "24 horas",
+        "categoria": "Validación de identidad – UI móvil",
+        "tiempo_resolucion": "7 horas 30 minutos"
+      }
+    },
+    {
+      "id": "T026",
+      "type": "historical_ticket",
+      "content": "Ticket T026: Solicitar aumento de límite de envíos por campaña\nEl cliente desea aumentar su límite diario de envíos de campañas WhatsApp de 50 000 a 100 000.\nCategoría: Customer Engagement – Límite de campaña\nSolución histórica: Se validó capacidad, se aprobó incremento y se configuró nuevo límite para el cliente.",
+      "metadata": {
+        "prioridad": "P4",
+        "urgencia": "Baja",
+        "sla": "72 horas",
+        "categoria": "Customer Engagement – Límite de campaña",
+        "tiempo_resolucion": "20 horas"
+      }
+    },
+    {
+      "id": "T027",
+      "type": "historical_ticket",
+      "content": "Ticket T027: Módulo de antecedentes no responde para tipo “proveedor”\nCuando se consulta antecedentes de tipo “proveedor”, la API retorna null y no hay mensaje de error claro.\nCategoría: Verificación de antecedentes – Tipos de entidad\nSolución histórica: Se corrigió endpoint para incluir parámetro “entity_type=provider”, se actualizó documentación.",
+      "metadata": {
+        "prioridad": "P2",
+        "urgencia": "Alta",
+        "sla": "4 horas",
+        "categoria": "Verificación de antecedentes – Tipos de entidad",
+        "tiempo_resolucion": "3 horas 45 minutes"
+      }
+    },
+    {
+      "id": "T028",
+      "type": "historical_ticket",
+      "content": "Ticket T028: Solicitud de entrenamiento para bot de soporte WhatsApp\nCliente solicita sesión de capacitación para utilizar la funcionalidad de bot de soporte en su instancia de Customer Engagement.\nCategoría: Customer Engagement – Capacitación\nSolución histórica: Se agendó sesión de capacitación, se entregaron materiales de apoyo y se mandó grabación.",
+      "metadata": {
+        "prioridad": "P4",
+        "urgencia": "Baja",
+        "sla": "72 horas",
+        "categoria": "Customer Engagement – Capacitación",
+        "tiempo_resolucion": "4 horas"
+      }
+    },
+    {
+      "id": "T029",
+      "type": "historical_ticket",
+      "content": "Ticket T029: Reporte de errores 404 en portal de identidad digital\nSe detectaron múltiples errores 404 al acceder a funcionalidades secundarias del portal de verificación de identidad.\nCategoría: Validación de identidad – Portal administración\nSolución histórica: Se restauraron rutas perdidas, se corrigieron enlaces rotos y se liberó nueva versión.",
+      "metadata": {
+        "prioridad": "P2",
+        "urgencia": "Alta",
+        "sla": "4 horas",
+        "categoria": "Validación de identidad – Portal administración",
+        "tiempo_resolucion": "6 horas"
+      }
+    },
+    {
+      "id": "T030",
+      "type": "historical_ticket",
+      "content": "Ticket T030: Clientes duplicados en módulo de verificación de antecedentes\nAl subir archivo de clientes para verificar antecedentes, algunos clientes figuran duplicados y se cobran doble verificación.\nCategoría: Verificación de antecedentes – Facturación\nSolución histórica: Se limpió duplicidad, se devolvió el cargo duplicado y se implementó validación de duplicados en el sistema.",
+      "metadata": {
+        "prioridad": "P3",
+        "urgencia": "Media",
+        "sla": "24 horas",
+        "categoria": "Verificación de antecedentes – Facturación",
+        "tiempo_resolucion": "9 horas"
+      }
+    },
+    {
+      "id": "T031",
+      "type": "historical_ticket",
+      "content": "Ticket T031: La integración SDK móvil de identidad falla en Android 14\nLos usuarios con Android 14 reportan que la cámara no se abre al iniciar captura de documento en onboarding.\nCategoría: Validación de identidad – SDK móvil\nSolución histórica: Se aplicó corrección para permisos de cámara en Android 14, se desplegó versión 2.1.4 del SDK.",
+      "metadata": {
+        "prioridad": "P2",
+        "urgencia": "Alta",
+        "sla": "4 horas",
+        "categoria": "Validación de identidad – SDK móvil",
+        "tiempo_resolucion": "5 horas 10 minutos"
+      }
+    },
+    {
+      "id": "T032",
+      "type": "historical_ticket",
+      "content": "Ticket T032: Solicitud de duplicado de conversación WhatsApp para auditoría\nEl cliente necesita exportar todas las conversaciones de bot de los últimos 6 meses para auditoría interna.\nCategoría: Customer Engagement – Exportación de datos\nSolución histórica: Se generó exportación en formato csv y ftp seguro, se notificó al cliente.",
+      "metadata": {
+        "prioridad": "P4",
+        "urgencia": "Baja",
+        "sla": "72 horas",
+        "categoria": "Customer Engagement – Exportación de datos",
+        "tiempo_resolucion": "22 horas"
+      }
+    },
+    {
+      "id": "T033",
+      "type": "historical_ticket",
+      "content": "Ticket T033: Fallo en verificación de identidad usando pasaporte europeo\nUsuarios con pasaporte europeo obtienen error de validación “documento no encontrado”. Otros documentos funcionan.\nCategoría: Validación de identidad – País/Documento\nSolución histórica: Se añadió soporte para formato MRZ europeo, se actualizó base de datos de documentos.",
+      "metadata": {
+        "prioridad": "P2",
+        "urgencia": "Alta",
+        "sla": "4 horas",
+        "categoria": "Validación de identidad – País/Documento",
+        "tiempo_resolucion": "4 horas 50 minutos"
+      }
+    },
+    {
+      "id": "T034",
+      "type": "historical_ticket",
+      "content": "Ticket T034: Interrupción menor en mensajería WhatsApp – retrasos 5-10 minutos\nSe reportan retrasos de 5 a 10 minutos en entrega de mensajes de bot de soporte, sin caída completa.\nCategoría: Customer Engagement – Latencia\nSolución histórica: Se descubrió saturación en una de las colas, se repartió carga a nueva instancia y latencia volvió a nivel normal.",
+      "metadata": {
+        "prioridad": "P2",
+        "urgencia": "Alta",
+        "sla": "4 horas",
+        "categoria": "Customer Engagement – Latencia",
+        "tiempo_resolucion": "4 horas 30 minutos"
+      }
+    },
+    {
+      "id": "T035",
+      "type": "historical_ticket",
+      "content": "Ticket T035: Error de carga de archivo para verificación de antecedentes\nEl sistema no acepta archivo CSV de más de 10 MB en la carga masiva de verificación de antecedentes.\nCategoría: Verificación de antecedentes – Carga masiva\nSolución histórica: Se aumentó límite de tamaño a 50 MB y se mejoró mensaje de error para informar al usuario.",
+      "metadata": {
+        "prioridad": "P3",
+        "urgencia": "Media",
+        "sla": "24 horas",
+        "categoria": "Verificación de antecedentes – Carga masiva",
+        "tiempo_resolucion": "6 horas 15 minutos"
+      }
+    },
+    {
+      "id": "T036",
+      "type": "historical_ticket",
+      "content": "Ticket T036: Solicitud de cambio de idioma en portal de identidad digital\nEl cliente necesita que el portal muestre inicialmente Español e Inglés y no solo español.\nCategoría: Validación de identidad – Internacionalización\nSolución histórica: Se activó soporte de inglés, se actualizó textos y se entregó nueva versión al cliente.",
+      "metadata": {
+        "prioridad": "P4",
+        "urgencia": "Baja",
+        "sla": "72 horas",
+        "categoria": "Validación de identidad – Internacionalización",
+        "tiempo_resolucion": "15 horas"
+      }
+    },
+    {
+      "id": "T037",
+      "type": "historical_ticket",
+      "content": "Ticket T037: Notificación de rechazo no llega a usuario\nCuando la verificación de identidad termina en estado “rechazado”, el usuario no recibe notificación por correo.\nCategoría: Validación de identidad – Notificaciones\nSolución histórica: Se activó servicio de envío de correo, se reenviaron los correos pendientes y se revisó filtro de spam.",
+      "metadata": {
+        "prioridad": "P3",
+        "urgencia": "Media",
+        "sla": "24 horas",
+        "categoria": "Validación de identidad – Notificaciones",
+        "tiempo_resolucion": "7 horas 40 minutes"
+      }
+    },
+    {
+      "id": "T038",
+      "type": "historical_ticket",
+      "content": "Ticket T038: El botón “Enviar campaña” está deshabilitado después de actualización\nTras una actualización del sistema, el cliente reporta que el botón para enviar campañas de WhatsApp está deshabilitado.\nCategoría: Customer Engagement – UI\nSolución histórica: Se revisó rollback, se reactivó botón y se pasó test de usuario antes de liberar.",
+      "metadata": {
+        "prioridad": "P2",
+        "urgencia": "Alta",
+        "sla": "4 horas",
+        "categoria": "Customer Engagement – UI",
+        "tiempo_resolucion": "3 horas 50 minutes"
+      }
+    },
+    {
+      "id": "T039",
+      "type": "historical_ticket",
+      "content": "Ticket T039: Verificación de antecedentes tardía – 30 minutos en módulo rápido\nEl módulo de “verificación rápida” tomó 30 minutos para completarse, excediendo el SLA prometido de 5 minutos.\nCategoría: Verificación de antecedentes – SLA incumplido\nSolución histórica: Se revisaron logs del servicio externo, se migró a otro proveedor más veloz y los tiempos volvieron a 4 minutos.",
+      "metadata": {
+        "prioridad": "P2",
+        "urgencia": "Alta",
+        "sla": "4 horas",
+        "categoria": "Verificación de antecedentes – SLA incumplido",
+        "tiempo_resolucion": "4 horas 5 minutos"
+      }
+    },
+    {
+      "id": "T040",
+      "type": "historical_ticket",
+      "content": "Ticket T040: Solicitud de desactivación de módulo de antecedentes para cliente\nEl cliente quiere suspender el módulo de antecedentes temporalmente durante 3 meses por cambio de regulación interna.\nCategoría: Verificación de antecedentes – Cambio contractual\nSolución histórica: Se procesó baja temporal, se ajustó contrato y se cerró con confirmación del cliente.",
+      "metadata": {
+        "prioridad": "P4",
+        "urgencia": "Baja",
+        "sla": "72 horas",
+        "categoria": "Verificación de antecedentes – Cambio contractual",
+        "tiempo_resolucion": "20 horas"
+      }
+    },
+    {
+      "id": "T041",
+      "type": "historical_ticket",
+      "content": "Ticket T041: Error intermitente en autenticación OAuth\nUsuarios reportan que ocasionalmente la autenticación vía OAuth falla con error 504.\nCategoría: Seguridad – Autenticación\nSolución histórica: Se aumentó el timeout del servicio externo y se añadió reintento automático.",
+      "metadata": {
+        "prioridad": "P2",
+        "urgencia": "Alta",
+        "sla": "4 horas",
+        "categoria": "Seguridad – Autenticación",
+        "tiempo_resolucion": "3 horas 15 minutos"
+      }
+    },
+    {
+      "id": "T042",
+      "type": "historical_ticket",
+      "content": "Ticket T042: Error intermitente en autenticación OAuth\nUsuarios reportan que ocasionalmente la autenticación vía OAuth falla con error 504.\nCategoría: Seguridad – Autenticación\nSolución histórica: Se aumentó el timeout del servicio externo y se añadió reintento automático.",
+      "metadata": {
+        "prioridad": "P2",
+        "urgencia": "Alta",
+        "sla": "4 horas",
+        "categoria": "Seguridad – Autenticación",
+        "tiempo_resolucion": "3 horas 15 minutos"
+      }
+    },
+    {
+      "id": "T043",
+      "type": "historical_ticket",
+      "content": "Ticket T043: Error intermitente en autenticación OAuth\nUsuarios reportan que ocasionalmente la autenticación vía OAuth falla con error 504.\nCategoría: Seguridad – Autenticación\nSolución histórica: Se aumentó el timeout del servicio externo y se añadió reintento automático.",
+      "metadata": {
+        "prioridad": "P2",
+        "urgencia": "Alta",
+        "sla": "4 horas",
+        "categoria": "Seguridad – Autenticación",
+        "tiempo_resolucion": "3 horas 15 minutos"
+      }
+    },
+    {
+      "id": "T044",
+      "type": "historical_ticket",
+      "content": "Ticket T044: Error intermitente en autenticación OAuth\nUsuarios reportan que ocasionalmente la autenticación vía OAuth falla con error 504.\nCategoría: Seguridad – Autenticación\nSolución histórica: Se aumentó el timeout del servicio externo y se añadió reintento automático.",
+      "metadata": {
+        "prioridad": "P2",
+        "urgencia": "Alta",
+        "sla": "4 horas",
+        "categoria": "Seguridad – Autenticación",
+        "tiempo_resolucion": "3 horas 15 minutos"
+      }
+    },
+    {
+      "id": "T045",
+      "type": "historical_ticket",
+      "content": "Ticket T045: Error intermitente en autenticación OAuth\nUsuarios reportan que ocasionalmente la autenticación vía OAuth falla con error 504.\nCategoría: Seguridad – Autenticación\nSolución histórica: Se aumentó el timeout del servicio externo y se añadió reintento automático.",
+      "metadata": {
+        "prioridad": "P2",
+        "urgencia": "Alta",
+        "sla": "4 horas",
+        "categoria": "Seguridad – Autenticación",
+        "tiempo_resolucion": "3 horas 15 minutos"
+      }
+    },
+    {
+      "id": "T046",
+      "type": "historical_ticket",
+      "content": "Ticket T046: Error intermitente en autenticación OAuth\nUsuarios reportan que ocasionalmente la autenticación vía OAuth falla con error 504.\nCategoría: Seguridad – Autenticación\nSolución histórica: Se aumentó el timeout del servicio externo y se añadió reintento automático.",
+      "metadata": {
+        "prioridad": "P2",
+        "urgencia": "Alta",
+        "sla": "4 horas",
+        "categoria": "Seguridad – Autenticación",
+        "tiempo_resolucion": "3 horas 15 minutos"
+      }
+    },
+    {
+      "id": "T047",
+      "type": "historical_ticket",
+      "content": "Ticket T047: Error intermitente en autenticación OAuth\nUsuarios reportan que ocasionalmente la autenticación vía OAuth falla con error 504.\nCategoría: Seguridad – Autenticación\nSolución histórica: Se aumentó el timeout del servicio externo y se añadió reintento automático.",
+      "metadata": {
+        "prioridad": "P2",
+        "urgencia": "Alta",
+        "sla": "4 horas",
+        "categoria": "Seguridad – Autenticación",
+        "tiempo_resolucion": "3 horas 15 minutos"
+      }
+    },
+    {
+      "id": "T048",
+      "type": "historical_ticket",
+      "content": "Ticket T048: Error intermitente en autenticación OAuth\nUsuarios reportan que ocasionalmente la autenticación vía OAuth falla con error 504.\nCategoría: Seguridad – Autenticación\nSolución histórica: Se aumentó el timeout del servicio externo y se añadió reintento automático.",
+      "metadata": {
+        "prioridad": "P2",
+        "urgencia": "Alta",
+        "sla": "4 horas",
+        "categoria": "Seguridad – Autenticación",
+        "tiempo_resolucion": "3 horas 15 minutos"
+      }
+    },
+    {
+      "id": "T049",
+      "type": "historical_ticket",
+      "content": "Ticket T049: Error intermitente en autenticación OAuth\nUsuarios reportan que ocasionalmente la autenticación vía OAuth falla con error 504.\nCategoría: Seguridad – Autenticación\nSolución histórica: Se aumentó el timeout del servicio externo y se añadió reintento automático.",
+      "metadata": {
+        "prioridad": "P2",
+        "urgencia": "Alta",
+        "sla": "4 horas",
+        "categoria": "Seguridad – Autenticación",
+        "tiempo_resolucion": "3 horas 15 minutos"
+      }
+    },
+    {
+      "id": "T050",
+      "type": "historical_ticket",
+      "content": "Ticket T050: Error intermitente en autenticación OAuth\nUsuarios reportan que ocasionalmente la autenticación vía OAuth falla con error 504.\nCategoría: Seguridad – Autenticación\nSolución histórica: Se aumentó el timeout del servicio externo y se añadió reintento automático.",
+      "metadata": {
+        "prioridad": "P2",
+        "urgencia": "Alta",
+        "sla": "4 horas",
+        "categoria": "Seguridad – Autenticación",
+        "tiempo_resolucion": "3 horas 15 minutos"
+      }
+    },
+    {
+      "id": "C001",
+      "type": "strategic_account",
+      "content": "Cliente: TechFin Solutions\nCaso de uso: Validación de identidad para onboarding digital\nEstado del servicio: En riesgo de churn\nIncidente crítico: La cámara biométrica no se habilita durante la validación de rostro.\nImpacto negocio: Clientes no completan onboarding KYC, riesgo alto de churn.",
+      "metadata": {
+        "cliente": "TechFin Solutions",
+        "mrr_usd": 15000,
+        "estado_servicio": "En riesgo de churn",
+        "porcentaje_usuarios_afectados": 45
+      }
+    },
+    {
+      "id": "C002",
+      "type": "strategic_account",
+      "content": "Cliente: Retail Express\nCaso de uso: Asignación de conversaciones de soporte (chatbot/agentes)\nEstado del servicio: Producción\nIncidente crítico: Los chats no se asignan a los agentes activos.\nImpacto negocio: Atención detenida, backlog de conversaciones, afecta satisfacción del cliente.",
+      "metadata": {
+        "cliente": "Retail Express",
+        "mrr_usd": 5000,
+        "estado_servicio": "Producción",
+        "porcentaje_usuarios_afectados": 100
+      }
+    },
+    {
+      "id": "C003",
+      "type": "strategic_account",
+      "content": "Cliente: LegalVerify & Corp\nCaso de uso: Background checks para contratación\nEstado del servicio: Producción\nIncidente crítico: El score de un check no se ve afectado aunque las fuentes entregan antecedentes.\nImpacto negocio: Reportes incompletos para contratación, riesgo de compliance.",
+      "metadata": {
+        "cliente": "LegalVerify & Corp",
+        "mrr_usd": 8000,
+        "estado_servicio": "Producción",
+        "porcentaje_usuarios_afectados": 20
+      }
+    },
+    {
+      "id": "C004",
+      "type": "strategic_account",
+      "content": "Cliente: Logística Rápida\nCaso de uso: Validación de documentos para entregas\nEstado del servicio: En riesgo de churn\nIncidente crítico: El proceso de validación permanece en estado pending aunque el documento expiró.\nImpacto negocio: Entregas detenidas, SLA logístico comprometido.",
+      "metadata": {
+        "cliente": "Logística Rápida",
+        "mrr_usd": 2500,
+        "estado_servicio": "En riesgo de churn",
+        "porcentaje_usuarios_afectados": 100
+      }
+    },
+    {
+      "id": "C005",
+      "type": "strategic_account",
+      "content": "Cliente: Recursos Humanos S.A.\nCaso de uso: Gestión de flujos de validación interna\nEstado del servicio: Producción\nIncidente crítico: No pueden editar el número de reintentos de sus validadores.\nImpacto negocio: Procesos internos rígidos, mayor fricción operacional.",
+      "metadata": {
+        "cliente": "Recursos Humanos S.A.",
+        "mrr_usd": 1200,
+        "estado_servicio": "Producción",
+        "porcentaje_usuarios_afectados": 10
+      }
+    },
+    {
+      "id": "C006",
+      "type": "strategic_account",
+      "content": "Cliente: Marketing Cloud\nCaso de uso: Campañas masivas de WhatsApp outbound\nEstado del servicio: Producción (alto consumo)\nIncidente crítico: Fallan todos los envíos de una campaña outbound.\nImpacto negocio: Pérdida de campañas críticas y KPIs comerciales.",
+      "metadata": {
+        "cliente": "Marketing Cloud",
+        "mrr_usd": 20000,
+        "estado_servicio": "Producción (alto consumo)",
+        "porcentaje_usuarios_afectados": 100
+      }
+    },
+    {
+      "id": "C007",
+      "type": "strategic_account",
+      "content": "Cliente: E-commerce Global\nCaso de uso: Chat de atención al cliente\nEstado del servicio: En riesgo de churn\nIncidente crítico: Se duplican las conversaciones de una sola interacción.\nImpacto negocio: Sobrecarga de agentes y confusión de clientes.",
+      "metadata": {
+        "cliente": "E-commerce Global",
+        "mrr_usd": 7500,
+        "estado_servicio": "En riesgo de churn",
+        "porcentaje_usuarios_afectados": 60
+      }
+    },
+    {
+      "id": "C008",
+      "type": "strategic_account",
+      "content": "Cliente: HealthSecure\nCaso de uso: Validación de identidad remota (telemedicina)\nEstado del servicio: Integración\nIncidente crítico: Demoras al cargar fotos durante la validación de identidad.\nImpacto negocio: Consultas médicas virtuales retrasadas, riesgo reputacional.",
+      "metadata": {
+        "cliente": "HealthSecure",
+        "mrr_usd": 3000,
+        "estado_servicio": "Integración",
+        "porcentaje_usuarios_afectados": 35
+      }
+    },
+    {
+      "id": "C009",
+      "type": "strategic_account",
+      "content": "Cliente: Banco del Mañana\nCaso de uso: Verificación de antecedentes para créditos\nEstado del servicio: Producción (crítico)\nIncidente crítico: Aparecen procesos y antecedentes legales/penales de una persona incorrecta.\nImpacto negocio: Riesgo regulatorio y bloqueo de aprobaciones crediticias.",
+      "metadata": {
+        "cliente": "Banco del Mañana",
+        "mrr_usd": 35000,
+        "estado_servicio": "Producción (crítico)",
+        "porcentaje_usuarios_afectados": 5
+      }
+    },
+    {
+      "id": "C010",
+      "type": "strategic_account",
+      "content": "Cliente: Telecom Innova\nCaso de uso: Notificaciones de reglas de negocio (webhooks)\nEstado del servicio: Integración\nIncidente crítico: Las notificaciones de reglas (bree) no llegan aunque están configuradas vía webhooks.\nImpacto negocio: Eventos críticos del negocio no disparan acciones automáticas.",
+      "metadata": {
+        "cliente": "Telecom Innova",
+        "mrr_usd": 6500,
+        "estado_servicio": "Integración",
+        "porcentaje_usuarios_afectados": 70
+      }
+    }
+  ]
+}

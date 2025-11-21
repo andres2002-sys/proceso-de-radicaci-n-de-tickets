@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Triage Copilot - Sistema de Clasificación Automática</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎫 Ticket Triage Copilot</h1>
+            <p class="subtitle">Sistema de Clasificación Automática con IA</p>
+        </header>
+
+        <main>
+            <!-- Formulario de Radicación -->
+            <section class="card" id="ticket-form-section">
+                <h2>Radicar Nuevo Ticket</h2>
+                <form id="ticket-form">
+                    <div class="form-group">
+                        <label for="client-select">Cliente *</label>
+                        <select id="client-select" name="client" required>
+                            <option value="">Seleccione un cliente...</option>
+                        </select>
+                        <div id="client-info" class="client-info hidden"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="title">Título del Ticket *</label>
+                        <input type="text" id="title" name="title" required 
+                               placeholder="Ej: API de validación no responde - Error 500">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Descripción *</label>
+                        <textarea id="description" name="description" rows="5" required
+                                  placeholder="Describa el problema o solicitud en detalle..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="channel">Canal</label>
+                        <select id="channel" name="channel">
+                            <option value="email">Email</option>
+                            <option value="chat">Chat</option>
+                            <option value="phone">Teléfono</option>
+                            <option value="portal">Portal</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="submit-btn">
+                        <span class="btn-text">Clasificar Ticket</span>
+                        <span class="btn-loader hidden">⏳ Procesando...</span>
+                    </button>
+                </form>
+            </section>
+
+            <!-- Resultados de Clasificación -->
+            <section class="card hidden" id="results-section">
+                <div class="results-header">
+                    <h2>Resultado de Clasificación</h2>
+                    <div class="confidence-badge" id="confidence-badge"></div>
+                </div>
+
+                <div class="classification-grid">
+                    <div class="classification-card priority">
+                        <div class="card-label">Prioridad</div>
+                        <div class="card-value" id="priority-value">-</div>
+                        <div class="card-badge" id="priority-badge"></div>
+                    </div>
+
+                    <div class="classification-card urgency">
+                        <div class="card-label">Urgencia</div>
+                        <div class="card-value" id="urgency-value">-</div>
+                        <div class="card-badge" id="urgency-badge"></div>
+                    </div>
+
+                    <div class="classification-card impact">
+                        <div class="card-label">Impacto</div>
+                        <div class="card-value" id="impact-value">-</div>
+                        <div class="card-badge" id="impact-badge"></div>
+                    </div>
+                </div>
+
+                <!-- SLA Matrix -->
+                <div class="sla-section">
+                    <h3>📋 Acuerdo de Nivel de Servicio (ANS)</h3>
+                    <div class="sla-grid">
+                        <div class="sla-item">
+                            <span class="sla-label">Primera Respuesta</span>
+                            <span class="sla-value" id="sla-first-response">-</span>
+                        </div>
+                        <div class="sla-item">
+                            <span class="sla-label">Inicio de Asistencia</span>
+                            <span class="sla-value" id="sla-assistance">-</span>
+                        </div>
+                        <div class="sla-item">
+                            <span class="sla-label">Tiempo Objetivo de Solución</span>
+                            <span class="sla-value" id="sla-resolution">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Justificación -->
+                <div class="justification-section">
+                    <h3>💡 Justificación</h3>
+                    <p id="justification-text">-</p>
+                </div>
+
+                <!-- Recomendaciones -->
+                <div class="recommendations-section hidden" id="recommendations-section">
+                    <h3>📌 Recomendaciones</h3>
+                    <ul id="recommendations-list"></ul>
+                </div>
+
+                <!-- Tickets Similares (RAG) -->
+                <div class="similar-tickets-section hidden" id="similar-tickets-section">
+                    <h3>🔍 Tickets Históricos Similares</h3>
+                    <div id="similar-tickets-list"></div>
+                </div>
+
+                <!-- Feedback Loop -->
+                <div class="feedback-section">
+                    <h3>✅ Feedback</h3>
+                    <div class="feedback-buttons">
+                        <button class="btn btn-success" id="confirm-btn">
+                            ✓ Confirmar Clasificación
+                        </button>
+                        <button class="btn btn-warning" id="correct-btn">
+                            ✏️ Corregir Clasificación
+                        </button>
+                    </div>
+                    <div id="feedback-status" class="feedback-status hidden"></div>
+                </div>
+            </section>
+
+            <!-- Modal de Corrección -->
+            <div class="modal hidden" id="correction-modal">
+                <div class="modal-content">
+                    <span class="modal-close" id="modal-close">&times;</span>
+                    <h2>Corregir Clasificación</h2>
+                    <form id="correction-form">
+                        <div class="form-group">
+                            <label for="correct-priority">Prioridad</label>
+                            <select id="correct-priority" name="priority">
+                                <option value="P1">P1 - Crítica</option>
+                                <option value="P2">P2 - Alta</option>
+                                <option value="P3">P3 - Media</option>
+                                <option value="P4">P4 - Baja</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="correct-urgency">Urgencia</label>
+                            <select id="correct-urgency" name="urgency">
+                                <option value="Crítica">Crítica</option>
+                                <option value="Alta">Alta</option>
+                                <option value="Media">Media</option>
+                                <option value="Baja">Baja</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="correction-note">Nota (opcional)</label>
+                            <textarea id="correction-note" name="note" rows="3"
+                                      placeholder="Explique por qué se corrige la clasificación..."></textarea>
+                        </div>
+                        <div class="modal-buttons">
+                            <button type="submit" class="btn btn-primary">Guardar Corrección</button>
+                            <button type="button" class="btn btn-secondary" id="cancel-correction">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Powered by AI • Sistema de Clasificación Automática de Tickets</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+

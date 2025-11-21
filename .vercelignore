@@ -1,0 +1,11 @@
+node_modules
+.env
+.env.local
+*.log
+.DS_Store
+test_*.js
+read_pdf.*
+dump_pdf.*
+doc_soporte.pdf
+doc_soporte*.txt
+
