@@ -141,22 +141,69 @@ async function handleTicketSubmit(e) {
             body: JSON.stringify(formData)
         });
         
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        if (response.ok) {
+            // good path: parse JSON
+            const data = await response.json();
+            currentClassification = data;
+            displayResults(data);
+        } else {
+            // server returned non-OK (404/500). Fall back to client-side heuristic classification
+            console.warn('API /tickets returned', response.status, '- using client-side fallback');
+            const fallback = createFallbackClassification(formData);
+            currentClassification = fallback;
+            displayResults(fallback);
         }
-        
-        const data = await response.json();
-        currentClassification = data;
-        displayResults(data);
-        
     } catch (error) {
-        console.error('Error classifying ticket:', error);
-        alert('Error al clasificar el ticket. Por favor, intente nuevamente.');
+        // network or CORS or server not found: fallback
+        console.warn('Error calling /api/tickets, using client-side fallback:', error && error.message ? error.message : error);
+        const fallback = createFallbackClassification(formData);
+        currentClassification = fallback;
+        displayResults(fallback);
     } finally {
         submitBtn.disabled = false;
         btnText.classList.remove('hidden');
         btnLoader.classList.add('hidden');
     }
+}
+
+// Simple client-side fallback classifier so app works when server API is unavailable
+function createFallbackClassification({ title = '', description = '', client = null, channel = '' } = {}) {
+    const text = `${title} ${description}`.toLowerCase();
+    let prioridad = 'P3';
+    let urgencia = 'Media';
+    let impacto = 'Medio';
+
+    if (/critico|crítico|pérdida|caída|down|data breach|breach|fraud/.test(text)) {
+        prioridad = 'P1'; urgencia = 'Alta'; impacto = 'Crítico';
+    } else if (/error grave|bloquea|falla|no funciona|incidente/.test(text)) {
+        prioridad = 'P2'; urgencia = 'Alta'; impacto = 'Alto';
+    } else if (/no carga|lentitud|error|timeout/.test(text)) {
+        prioridad = 'P3'; urgencia = 'Media'; impacto = 'Medio';
+    } else {
+        prioridad = 'P4'; urgencia = 'Baja'; impacto = 'Bajo';
+    }
+
+    const confianza = 0.6; // conservative
+    const justificacion = 'Clasificación provisional (modo offline). Verificar con backend.';
+    const sla_objetivo = {
+        tiempo_primer_respuesta: impacto === 'Crítico' ? '15 minutos' : '1 hora',
+        tiempo_asistencia: impacto === 'Crítico' ? '30 minutos' : '4 horas',
+        tiempo_objetivo_solucion: impacto === 'Crítico' ? '4 horas' : '5 días hábiles'
+    };
+
+    return {
+        ticket_id: `LOCAL-${Date.now()}`,
+        prioridad,
+        urgencia,
+        impacto,
+        sla_objetivo,
+        justificacion,
+        confianza,
+        recomendaciones: [],
+        tickets_similares: [],
+        model: 'fallback-local',
+        clientContext: client || null
+    };
 }
 
 // Display classification results
