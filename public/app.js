@@ -15,22 +15,54 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // Load clients from API
 async function loadClients() {
-    try {
-        const response = await fetch(`${API_BASE_URL}/clients`);
-        const data = await response.json();
-        clients = data.clients || [];
-        
-        const clientSelect = document.getElementById('client-select');
-        clientSelect.innerHTML = '<option value="">Seleccione un cliente...</option>';
-        
+    // First, try the API endpoint. If it fails or returns non-JSON (HTML 404 page), fall back to the static JSON in /public
+    const clientSelect = document.getElementById('client-select');
+    clientSelect.innerHTML = '<option value="">Seleccione un cliente...</option>';
+
+    async function populateClients(list) {
+        clients = list || [];
         clients.forEach(client => {
             const option = document.createElement('option');
-            option.value = client.nombre;
-            option.textContent = `${client.nombre} (MRR: $${client.mrr.toLocaleString()})`;
+            // Use existing field names: some sources use "cliente" or "nombre"; normalize
+            const name = client.nombre || client.cliente || client.id || 'Cliente';
+            const mrr = client.mrr || client.mrr_usd || 0;
+            option.value = name;
+            option.textContent = `${name} (MRR: $${Number(mrr).toLocaleString()})`;
             clientSelect.appendChild(option);
         });
+    }
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/clients`);
+        // If response is OK but not JSON, response.json() will throw — handle that below
+        if (response.ok) {
+            const contentType = response.headers.get('content-type') || '';
+            if (contentType.includes('application/json')) {
+                const data = await response.json();
+                await populateClients(data.clients || []);
+                return;
+            } else {
+                console.warn('API returned non-JSON content, falling back to static file. content-type=', contentType);
+            }
+        } else {
+            console.warn('API returned status', response.status, 'falling back to static file');
+        }
     } catch (error) {
-        console.error('Error loading clients:', error);
+        console.warn('Error fetching /api/clients, falling back to static file:', error && error.message ? error.message : error);
+    }
+
+    // Fallback to static file served from /public
+    try {
+        const fallback = await fetch('/support_clients.json');
+        if (fallback.ok) {
+            const data = await fallback.json();
+            await populateClients(data.clients || []);
+            return;
+        } else {
+            console.error('Fallback static file returned status', fallback.status);
+        }
+    } catch (err) {
+        console.error('Fallback loadClients error:', err);
     }
 }
 
