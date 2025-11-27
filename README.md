@@ -229,15 +229,14 @@ FRONTEND_ORIGIN=*
 - `docs/architecture.md` - Arquitectura detallada
 - `docs/DEPLOY.md` - Guía completa de despliegue
 
-## 🎥 Video Demostrativo
-
-[Pendiente: Grabar video de 2-5 minutos mostrando el flujo completo]
-
 ## 📄 Licencia
 
 ISC
 
 ## 👤 Autor
 
+Andres Trespalacios
+
+## 📄 Titulo 
 Sistema desarrollado como prueba técnica para Ingeniero de Soporte (Tech Support Engineer).
 
