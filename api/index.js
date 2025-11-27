@@ -117,6 +117,21 @@ app.get('/api/feedback', (_req, res) => {
   res.json({ feedback: feedbackBuffer.slice(-20) });
 });
 
+// Debug endpoint to inspect whether strategicClients were loaded in production
+app.get('/api/debug', (_req, res) => {
+  try {
+    const sample = strategicClients && strategicClients.length ? strategicClients.slice(0, 10) : [];
+    return res.json({
+      ok: true,
+      strategicClientsLength: Array.isArray(strategicClients) ? strategicClients.length : 0,
+      strategicClientsSample: sample,
+      ansMatrixLength: Array.isArray(ansMatrix) ? ansMatrix.length : 0
+    });
+  } catch (err) {
+    return res.status(500).json({ ok: false, error: err?.message || String(err) });
+  }
+});
+
 // Export a handler function so the serverless runtime receives a proper (req,res) entrypoint
 export default function handler(req, res) {
   // Diagnostic: ayuda a comprobar en los logs de Vercel si los datos están disponibles
