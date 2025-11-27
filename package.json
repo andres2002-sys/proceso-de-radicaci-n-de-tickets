@@ -8,6 +8,7 @@
     "dev": "nodemon src/server.mjs",
     "start": "node src/server.mjs",
     "ingest": "node scripts/ingest_data.mjs",
+    "build": "npm run ingest",
     "test": "echo \"No automated tests yet\" && exit 0"
   },
   "keywords": [],
