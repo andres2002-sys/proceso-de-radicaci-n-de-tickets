@@ -4,12 +4,11 @@ import cors from 'cors';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import fs from 'fs';
-import {
-  strategicClients,
-  ansMatrix,
-  metricasDefiniciones
-} from '../src/lib/rag.mjs';
-import { classifyTicket } from '../src/services/classifier.mjs';
+// Load these lazily to avoid import-time crashes in the serverless environment
+let strategicClients = [];
+let ansMatrix = [];
+let metricasDefiniciones = {};
+let classifyTicket = null;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -134,7 +133,7 @@ app.get('/api/debug', (_req, res) => {
 });
 
 // Export a handler function so the serverless runtime receives a proper (req,res) entrypoint
-export default function handler(req, res) {
+export default async function handler(req, res) {
   // Diagnostic: ayuda a comprobar en los logs de Vercel si los datos están disponibles
   try {
     console.log('diagnostic: process.cwd() =', process.cwd());
@@ -155,6 +154,27 @@ export default function handler(req, res) {
     console.log('strategicClients length =', Array.isArray(strategicClients) ? strategicClients.length : 'no-array');
   } catch (e) {
     console.log('error reading strategicClients for diagnostic:', e?.message || e);
+  }
+
+  // Attempt to lazy-load rag and classifier modules if not already loaded.
+  try {
+    if (!classifyTicket || !Array.isArray(strategicClients) || strategicClients.length === 0) {
+      const rag = await import('../src/lib/rag.mjs');
+      strategicClients = rag.strategicClients || [];
+      ansMatrix = rag.ansMatrix || [];
+      metricasDefiniciones = rag.metricasDefiniciones || {};
+
+      try {
+        const classifier = await import('../src/services/classifier.mjs');
+        classifyTicket = classifier.classifyTicket;
+      } catch (clfErr) {
+        console.log('diagnostic: could not import classifier:', clfErr?.message || clfErr);
+        classifyTicket = null;
+      }
+      console.log('diagnostic: lazy-loaded rag modules; strategicClients length =', strategicClients.length);
+    }
+  } catch (lazyErr) {
+    console.log('diagnostic: lazy load error', lazyErr?.message || lazyErr);
   }
 
   return app(req, res);
