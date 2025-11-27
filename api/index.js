@@ -117,5 +117,15 @@ app.get('/api/feedback', (_req, res) => {
   res.json({ feedback: feedbackBuffer.slice(-20) });
 });
 
-export default app;
+// Export a handler function so the serverless runtime receives a proper (req,res) entrypoint
+export default function handler(req, res) {
+  // Diagnostic: ayuda a comprobar en los logs de Vercel si los datos están disponibles
+  try {
+    console.log('strategicClients length =', Array.isArray(strategicClients) ? strategicClients.length : 'no-array');
+  } catch (e) {
+    console.log('error reading strategicClients for diagnostic:', e?.message || e);
+  }
+
+  return app(req, res);
+}
 
