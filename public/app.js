@@ -99,16 +99,20 @@ function handleClientChange(e) {
         clientInfo.classList.add('hidden');
         return;
     }
-    
-    const client = clients.find(c => c.nombre === clientName);
+    // The client objects may use either `nombre` or `cliente` as the name field
+    const client = clients.find(c => (c.nombre || c.cliente || c.id) === clientName);
     if (client) {
+        const name = client.nombre || client.cliente || client.id || 'Cliente';
+        const mrr = client.mrr || client.mrr_usd || 0;
         clientInfo.classList.remove('hidden');
         clientInfo.innerHTML = `
-            <strong>Cliente:</strong> ${client.nombre}<br>
-            <strong>MRR:</strong> $${client.mrr.toLocaleString()} | 
-            <strong>Estado:</strong> ${client.estado_servicio} | 
-            <strong>% Usuarios Afectados:</strong> ${client.porcentaje_usuarios_afectados}%
+            <strong>Cliente:</strong> ${name}<br>
+            <strong>MRR:</strong> $${Number(mrr).toLocaleString()} | 
+            <strong>Estado:</strong> ${client.estado_servicio || '-'} | 
+            <strong>% Usuarios Afectados:</strong> ${client.porcentaje_usuarios_afectados || 0}%
         `;
+    } else {
+        clientInfo.classList.add('hidden');
     }
 }
 
