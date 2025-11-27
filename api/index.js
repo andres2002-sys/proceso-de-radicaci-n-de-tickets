@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import fs from 'fs';
 import {
   strategicClients,
   ansMatrix,
@@ -136,6 +137,21 @@ app.get('/api/debug', (_req, res) => {
 export default function handler(req, res) {
   // Diagnostic: ayuda a comprobar en los logs de Vercel si los datos están disponibles
   try {
+    console.log('diagnostic: process.cwd() =', process.cwd());
+    console.log('diagnostic: __dirname =', __dirname);
+    try {
+      const rootFiles = fs.readdirSync(process.cwd());
+      console.log('diagnostic: root files sample =', rootFiles.slice(0, 40));
+    } catch (rfErr) {
+      console.log('diagnostic: error listing root files', rfErr?.message || rfErr);
+    }
+
+    const ragPath = join(process.cwd(), 'data', 'rag_corpus.json');
+    const clientsPath = join(process.cwd(), 'data', 'support_clients.json');
+    const publicClientsPath = join(process.cwd(), 'public', 'support_clients.json');
+    console.log('diagnostic: exists rag_corpus.json =', fs.existsSync(ragPath));
+    console.log('diagnostic: exists data/support_clients.json =', fs.existsSync(clientsPath));
+    console.log('diagnostic: exists public/support_clients.json =', fs.existsSync(publicClientsPath));
     console.log('strategicClients length =', Array.isArray(strategicClients) ? strategicClients.length : 'no-array');
   } catch (e) {
     console.log('error reading strategicClients for diagnostic:', e?.message || e);
